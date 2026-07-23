@@ -9,7 +9,9 @@ android {
 
     defaultConfig {
         minSdk = 23
-
+        version = "1.25.3"
+        buildConfigField("int", "VERSION_CODE", "1203")
+        buildConfigField("String", "VERSION_NAME", "\"1.25.3\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -33,6 +35,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
