@@ -17,4 +17,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "InAppStorySdk_Compose"
 //include(":app")
-include(":ui:compose")
+include(":ui-compose")
