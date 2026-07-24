@@ -12,6 +12,7 @@ object InAppStorySDK {
     val settings = IASSettings()
     val games = IASGames()
     val inAppMessages = IASInAppMessages()
+    val banners = IASBanners()
 
     fun initSdk(context: Context) {
         InAppStoryManager.initSDK(context)
