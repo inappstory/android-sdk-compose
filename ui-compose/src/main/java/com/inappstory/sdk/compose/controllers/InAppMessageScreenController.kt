@@ -12,11 +12,23 @@ import com.inappstory.sdk.inappmessage.InAppMessageViewController
 import com.inappstory.sdk.inappmessage.domain.reader.IAMViewController
 
 class InAppMessageScreenController {
-    var getLayout: (() -> FrameLayout?)? = null
+    internal var getLayout: (() -> FrameLayout?)? = null
+    private var viewController: InAppMessageViewController = InAppMessageViewController()
+
+    fun pauseView() {
+        viewController.pauseView()
+    }
+
+    fun closeView() {
+        viewController.closeView()
+    }
+
+    fun resumeView() {
+        viewController.resumeView()
+    }
 
     fun openInAppMessage(
         openSettings: InAppMessageOpenSettings,
-        viewController: InAppMessageViewController? = null,
         readerOpened: () -> Unit = {},
         readerClosed: () -> Unit = {},
         readerOpenErr: () -> Unit = {},

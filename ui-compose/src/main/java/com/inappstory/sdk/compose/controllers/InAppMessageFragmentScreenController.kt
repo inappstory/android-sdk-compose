@@ -18,10 +18,22 @@ internal class FragmentSettings(
 
 class InAppMessageFragmentScreenController {
     internal var getSettings: (() -> FragmentSettings?)? = null
+    private var viewController: InAppMessageViewController = InAppMessageViewController()
+
+    fun pauseView() {
+        viewController.pauseView()
+    }
+
+    fun closeView() {
+        viewController.closeView()
+    }
+
+    fun resumeView() {
+        viewController.resumeView()
+    }
 
     fun openInAppMessage(
         openSettings: InAppMessageOpenSettings,
-        viewController: InAppMessageViewController? = null,
         readerOpened: () -> Unit = {},
         readerClosed: () -> Unit = {},
         readerOpenErr: () -> Unit = {},

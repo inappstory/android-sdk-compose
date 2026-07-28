@@ -25,4 +25,8 @@ object InAppStorySDK {
             }
         })
     }
+
+    fun handleBackPress(handle: ()-> Unit, skip: ()->Unit) {
+
+    }
 }

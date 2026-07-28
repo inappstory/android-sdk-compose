@@ -1,5 +1,6 @@
 package com.inappstory.sdk.compose.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
@@ -18,17 +19,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.compose.ui.zIndex
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.inappstory.sdk.compose.R
 import com.inappstory.sdk.compose.controllers.FragmentsNavController
 import com.inappstory.sdk.compose.controllers.NavContentType
 import com.inappstory.sdk.compose.databinding.IasDefaultGameFragmentBinding
 import com.inappstory.sdk.compose.databinding.IasDefaultStoryFragmentBinding
+import com.inappstory.sdk.stories.utils.IASBackPressHandler
 
 @Composable
 fun StoryAndGameFragmentScreen(
     modifier: Modifier = Modifier.fillMaxSize(),
     openStoryAsFragment: Boolean = true,
-    openGameAsFragment: Boolean = true
+    openGameAsFragment: Boolean = true,
+    onBackPressed: () -> Unit
 ) {
     val context = LocalContext.current
     if (context !is FragmentActivity) return
@@ -71,6 +76,23 @@ fun StoryAndGameFragmentScreen(
                 fragmentsNavController.clearGameReaderPresentation()
         }
     }
+    BackHandler(enabled = topContent == NavContentType.STORY) {
+        val fragmentManager = context.supportFragmentManager
+        val fragment: Fragment? =
+            fragmentManager.findFragmentById(R.id.ias_default_story_fragment_container)
+        if (fragment !is IASBackPressHandler || !(fragment as IASBackPressHandler).onBackPressed()) {
+            onBackPressed.invoke()
+        }
+    }
+    BackHandler(enabled = topContent == NavContentType.GAME) {
+        val fragmentManager = context.supportFragmentManager
+        val fragment: Fragment? =
+            fragmentManager.findFragmentById(R.id.ias_default_game_fragment_container)
+        if (fragment !is IASBackPressHandler || !(fragment as IASBackPressHandler).onBackPressed()) {
+            onBackPressed.invoke()
+        }
+    }
+
 }
 
 
