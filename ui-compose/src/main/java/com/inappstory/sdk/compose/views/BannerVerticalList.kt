@@ -18,7 +18,7 @@ import com.inappstory.sdk.core.banners.ICustomBannerListAppearance
 fun BannerVerticalList(
     modifier: Modifier = Modifier
         .fillMaxSize(),
-    bannerCarouselController: BannerVerticalListController,
+    bannerVerticalListController: BannerVerticalListController,
     placeId: String,
     uniqueId: String? = null,
     bannerVerticalListInterface: ICustomBannerListAppearance = CustomBannerListAppearance()
@@ -33,10 +33,10 @@ fun BannerVerticalList(
                     bannerVerticalListInterface
                 )
             )
-            bannerCarouselController.loadList = {
+            bannerVerticalListController.loadList = {
                 this.loadBanners()
             }
-            bannerCarouselController.reloadList = {
+            bannerVerticalListController.reloadList = {
                 this.loadBanners(true)
             }
             loadCallback(object : BannerPlaceLoadCallback() {
@@ -45,7 +45,7 @@ fun BannerVerticalList(
                     bannerData: List<BannerData?>?,
                     widgetHeight: Int
                 ) {
-                    bannerCarouselController.bannerPlaceLoaded(
+                    bannerVerticalListController.bannerPlaceLoaded(
                         size,
                         bannerData,
                         widgetHeight
@@ -53,18 +53,18 @@ fun BannerVerticalList(
                 }
 
                 override fun loadError() {
-                    bannerCarouselController.loadError()
+                    bannerVerticalListController.loadError()
                 }
 
                 override fun bannerLoaded(bannerId: Int, isCurrent: Boolean) {
-                    bannerCarouselController.bannerLoaded(
+                    bannerVerticalListController.bannerLoaded(
                         bannerId,
                         isCurrent
                     )
                 }
 
                 override fun bannerLoadError(bannerId: Int, isCurrent: Boolean) {
-                    bannerCarouselController.bannerLoadError(
+                    bannerVerticalListController.bannerLoadError(
                         bannerId,
                         isCurrent
                     )
@@ -81,6 +81,6 @@ fun BannerVerticalList(
         }
     )
     LaunchedEffect(true) {
-        bannerCarouselController.loadList()
+        bannerVerticalListController.loadList()
     }
 }

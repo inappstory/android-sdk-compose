@@ -31,11 +31,11 @@ fun StoryListRV(
     cacheId: String? = null,
     feed: String = "default",
     appearanceManager: AppearanceManager = AppearanceManager(),
-    scrollCallback: ListScrollCallback? = null,
     listItemTouchDown: (view: View?, position: Int) -> Unit = { _, _ ->
     },
     listItemTouchUp: (view: View?, position: Int) -> Unit = { _, _ ->
     },
+    favoriteCellClick: () -> Unit,
     listItemClick: (
         storyData: StoryData?,
         index: Int
@@ -48,8 +48,16 @@ fun StoryListRV(
     val uniqueId = cacheId ?: feed
     val storiesList = remember {
         StoriesList(context).apply {
+            this.setCacheId(uniqueId)
+            this.feed = feed
+            this.setOnFavoriteItemClick {
+                favoriteCellClick.invoke()
+            }
             storyListController.loadList = {
                 this.loadStories()
+            }
+            storyListController.updateVisibleArea = { triggerScrollCallback ->
+                this.updateVisibleArea(triggerScrollCallback)
             }
             storyListController.reloadList = {
                 InAppStoryManager.getInstance()?.clearCachedListById(uniqueId)
@@ -118,15 +126,12 @@ fun StoryListRV(
                     )
                 }
             })
-            scrollCallback?.let { }
             this.setAppearanceManager(appearanceManager)
         }
     }
     layoutManager?.let {
         storiesList.layoutManager = it
     }
-    storiesList.setCacheId(uniqueId)
-    storiesList.feed = feed
     AndroidView(
         modifier = modifier,
         factory = { ctx ->
@@ -144,9 +149,7 @@ fun FavoriteStoryListRV(
         .fillMaxSize(),
     storyListController: StoryListController,
     layoutManager: RecyclerView.LayoutManager? = null,
-    cacheId: String? = null,
     appearanceManager: AppearanceManager = AppearanceManager(),
-    scrollCallback: ListScrollCallback? = null,
     listItemTouchDown: (view: View?, position: Int) -> Unit = { _, _ ->
     },
     listItemTouchUp: (view: View?, position: Int) -> Unit = { _, _ ->
@@ -164,6 +167,9 @@ fun FavoriteStoryListRV(
         StoriesList(context, true).apply {
             storyListController.loadList = { this.loadStories() }
             storyListController.reloadList = { this.refresh() }
+            storyListController.updateVisibleArea = { triggerScrollCallback ->
+                this.updateVisibleArea(triggerScrollCallback)
+            }
             this.setScrollCallback(object : ListScrollCallback {
                 override fun scrollStart() {
                     listScrollStart()
@@ -227,13 +233,11 @@ fun FavoriteStoryListRV(
                     )
                 }
             })
-            scrollCallback?.let { }
         }
     }
     layoutManager?.let {
         storiesList.layoutManager = it
     }
-    cacheId?.let { storiesList.setCacheId(it) }
     storiesList.setAppearanceManager(appearanceManager)
     AndroidView(
         modifier = modifier,
