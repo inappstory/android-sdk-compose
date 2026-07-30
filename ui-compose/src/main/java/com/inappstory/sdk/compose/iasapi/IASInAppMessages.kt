@@ -8,13 +8,30 @@ import com.inappstory.sdk.inappmessage.CloseInAppMessageCallback
 import com.inappstory.sdk.inappmessage.InAppMessageData
 import com.inappstory.sdk.inappmessage.InAppMessageLoadCallback
 import com.inappstory.sdk.inappmessage.InAppMessagePreloadSettings
+import com.inappstory.sdk.inappmessage.InAppMessageSlideData
 import com.inappstory.sdk.inappmessage.InAppMessageWidgetCallback
 import com.inappstory.sdk.inappmessage.ShowInAppMessageCallback
+import com.inappstory.sdk.inappmessage.ShowInAppMessageSlideCallback
 
 
 class IASInAppMessages {
     private fun useCore(callback: UseIASCoreCallback) {
         InAppStoryManager.useCore(callback)
+    }
+
+    fun onShowInAppMessageSlide(showSlide: (iamSlideData: InAppMessageSlideData?) -> Unit) {
+        useCore(object : UseIASCoreCallback() {
+            override fun use(core: IASCore) {
+                core.callbacksAPI().setCallback(
+                    IASCallbackType.SHOW_IN_APP_MESSAGE,
+                    object : ShowInAppMessageSlideCallback {
+                        override fun showSlide(iamSlideData: InAppMessageSlideData?) {
+                            showSlide.invoke(iamSlideData)
+                        }
+                    }
+                );
+            }
+        })
     }
 
     fun onShowInAppMessage(showIAM: (iamData: InAppMessageData?) -> Unit) {
