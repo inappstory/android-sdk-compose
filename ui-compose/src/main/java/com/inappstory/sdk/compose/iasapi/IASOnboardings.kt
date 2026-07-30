@@ -16,7 +16,7 @@ class IASOnboardings {
         context: Context,
         feed: String = "onboardings",
         appearanceManager: AppearanceManager = AppearanceManager(),
-        tags: MutableList<String> = arrayListOf(),
+        tags: MutableList<String>? = arrayListOf(),
         limit: Int = 100
     ): CancellationToken {
         val token: CancellationTokenWithStatus =
