@@ -28,6 +28,7 @@ class IASManager {
         tags: ArrayList<String?>? = null,
         placeholders: MutableMap<String?, String?>? = null,
         imagePlaceholders: MutableMap<String?, ImagePlaceholderValue?>? = null,
+        extraOptions: MutableMap<String?, String?>? = null,
         testKey: String? = null,
         gameDemoMode: Boolean = false,
         deviceIdEnabled: Boolean = true,
@@ -37,6 +38,7 @@ class IASManager {
             .apiKey(apiKey)
             .isDeviceIDEnabled(deviceIdEnabled)
             .lang(lang)
+            .options(extraOptions)
             .sandbox(sandbox)
             .gameDemoMode(gameDemoMode)
             .testKey(testKey)

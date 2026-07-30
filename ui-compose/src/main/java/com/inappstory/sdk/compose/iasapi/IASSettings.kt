@@ -84,7 +84,13 @@ class IASSettings {
         })
     }
 
-    fun placeholders(newPlaceholders: MutableMap<String?, String?>) {}
+    fun placeholders(newPlaceholders: MutableMap<String?, String?>) {
+        InAppStoryManager.useCore(object : UseIASCoreCallback() {
+            override fun use(core: IASCore) {
+                core.settingsAPI().setPlaceholders(newPlaceholders)
+            }
+        })
+    }
 
     fun imagePlaceholders(newPlaceholders: MutableMap<String?, ImagePlaceholderValue?>) {
         InAppStoryManager.useCore(object : UseIASCoreCallback() {
