@@ -16,7 +16,7 @@ import com.inappstory.sdk.inappmessage.ShowInAppMessageSlideCallback
 
 class IASInAppMessages {
     private fun useCore(callback: UseIASCoreCallback) {
-        InAppStoryManager.useCore(callback)
+        InAppStoryManager.useCore(callback)//d
     }
 
     fun onShowInAppMessageSlide(showSlide: (iamSlideData: InAppMessageSlideData?) -> Unit) {

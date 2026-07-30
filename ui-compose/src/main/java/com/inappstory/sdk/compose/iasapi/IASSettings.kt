@@ -100,7 +100,7 @@ class IASSettings {
         })
     }
 
-    fun commonAppearanceManager(appearanceManager: AppearanceManager?) {
+    fun setCommonAppearanceManager(appearanceManager: AppearanceManager?) {
         AppearanceManager.setCommonInstance(appearanceManager);
     }
 

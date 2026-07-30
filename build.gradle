@@ -6,8 +6,8 @@ buildscript {
         gradle_plugin_version = "1.8.10"
 
 
-        inappstory_compose_output_version = "0.0.3"
-        inappstory_compose_output_build = 1
+        inappstory_compose_output_version = "0.0.5"
+        inappstory_compose_output_build = 2
     }
     repositories {
         google()
