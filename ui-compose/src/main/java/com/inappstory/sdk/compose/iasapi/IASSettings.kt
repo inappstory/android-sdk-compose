@@ -18,6 +18,7 @@ class IASSettings {
                 core.settingsAPI().inAppStorySettings(settings)
             }
         })
+        //
     }
 
     fun deviceId(deviceId: String?) {
