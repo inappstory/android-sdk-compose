@@ -25,7 +25,8 @@ class CustomShare(
         shareData: HashMap<String, Any>,
         actions: OverlappingContainerActions
     ) -> Unit,
-    private val updateViewVisibility: (Boolean)->Unit,
+    private val updateViewVisibility: (Boolean) -> Unit,
+    private val getViewActions: (data: Map<String, Any?>?) -> Unit = {},
 ) : ShareCallback {
     private var actions: OverlappingContainerActions? = null
 
@@ -61,7 +62,10 @@ class CustomShare(
         fun isAppInstalled(packageName: String, packageManager: PackageManager): Boolean {
             return try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    packageManager.getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(0))
+                    packageManager.getPackageInfo(
+                        packageName,
+                        PackageManager.PackageInfoFlags.of(0)
+                    )
                 } else {
                     packageManager.getPackageInfo(packageName, 0)
                 }
@@ -78,6 +82,7 @@ class CustomShare(
         actions: OverlappingContainerActions
     ): View {
         this.actions = actions
+        getViewActions.invoke(shareData)
         return ComposeView(context).apply {
             layoutParams = FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
