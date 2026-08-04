@@ -17,10 +17,10 @@ buildscript {
         google()
         mavenCentral()
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:$ias_gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ias_gradle_plugin_version"
-        classpath 'org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.0.21'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
