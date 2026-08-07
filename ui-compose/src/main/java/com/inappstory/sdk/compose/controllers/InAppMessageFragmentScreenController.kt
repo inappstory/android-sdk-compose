@@ -36,7 +36,7 @@ class InAppMessageFragmentScreenController {
         openSettings: InAppMessageOpenSettings,
         readerOpened: () -> Unit = {},
         readerClosed: () -> Unit = {},
-        readerOpenErr: () -> Unit = {},
+        readerOpenErr: (error: String?) -> Unit = {},
     ): CancellationToken? {
         val token = getSettings?.invoke()?.let { settings ->
             InAppStoryManager.getInstance()?.showInAppMessage(
@@ -58,11 +58,11 @@ class InAppMessageFragmentScreenController {
                     }
 
                     override fun readerOpenError(error: String?) {
-                        readerClosed.invoke()
+                        readerOpenErr.invoke(error)
                     }
 
                     override fun readerIsClosed() {
-                        readerOpenErr.invoke()
+                        readerClosed.invoke()
                     }
                 }
             )

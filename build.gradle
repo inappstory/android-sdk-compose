@@ -4,14 +4,14 @@ buildscript {
         ias_kotlin_version = "1.9.0"
         ias_gradle_version = "8.1.2"
         ias_gradle_plugin_version = "1.8.10"
-        ias_inappstory_version = "d8ac2642ae17689f20b7d783351ff38349ec0088"
+        ias_inappstory_version = "a355e16d97485ab4e8a40a988f2975fb20a546fb"
         ias_fragment_ktx = "1.8.9"
         ias_appcompat = "1.5.0"
         ias_material = "1.6.1"
         ias_activity_compose = "1.5.0"
         ias_compose_bom = "2023.03.00"
-        inappstory_compose_output_version = "0.0.5"
-        inappstory_compose_output_build = 2
+        inappstory_compose_output_version = "0.0.6"
+        inappstory_compose_output_build = 3
     }
     repositories {
         google()
