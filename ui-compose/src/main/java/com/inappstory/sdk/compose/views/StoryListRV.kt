@@ -146,7 +146,8 @@ fun StoryListRV(
 @Composable
 fun FavoriteStoryListRV(
     modifier: Modifier = Modifier
-        .fillMaxSize(),
+        .fillMaxWidth()
+        .wrapContentHeight(),
     storyListController: StoryListController,
     layoutManager: RecyclerView.LayoutManager? = null,
     appearanceManager: AppearanceManager = AppearanceManager(),

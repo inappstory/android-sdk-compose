@@ -29,17 +29,10 @@ class IASSettings {
         })
     }
 
-    fun userId(userId: String?, sign: String?) {
+    fun userId(userId: String?, sign: String? = null) {
         InAppStoryManager.useCore(object : UseIASCoreCallback() {
             override fun use(core: IASCore) {
                 core.settingsAPI().setUserId(userId, sign)
-            }
-        })
-    }
-    fun userId(userId: String?) {
-        InAppStoryManager.useCore(object : UseIASCoreCallback() {
-            override fun use(core: IASCore) {
-                core.settingsAPI().setUserId(userId, null)
             }
         })
     }
