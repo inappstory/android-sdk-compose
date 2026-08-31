@@ -1,6 +1,7 @@
 package com.inappstory.sdk.compose.views
 
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -40,19 +41,20 @@ class CustomShare(
     companion object {
         var instance: CustomShare? = null
 
-        fun share(
+        fun <T : BroadcastReceiver> share(
             context: Context,
             data: IASShareData,
-            packageName: String?
+            packageName: String?,
+            receiver: Class<T>
         ) {
             val shareManager = IASShareManager()
             if (packageName != null) shareManager.shareToSpecificApp(
-                ShareBroadcastReceiver::class.java,
+                receiver,
                 context as Activity,
                 data,
                 packageName
             ) else shareManager.shareDefault(
-                ShareBroadcastReceiver::class.java,
+                receiver,
                 context as Activity,
                 data
             )
