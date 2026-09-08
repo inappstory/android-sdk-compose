@@ -3,9 +3,13 @@ package com.inappstory.sdk.compose.iasapi
 import android.content.Context
 import com.inappstory.sdk.InAppStoryManager
 import com.inappstory.sdk.UseManagerInstanceCallback
+import com.inappstory.sdk.compose.views.customlistitem.StoryListItemViewModelsHolder
 import com.inappstory.sdk.core.IASCore
 import com.inappstory.sdk.core.UseIASCoreCallback
+import com.inappstory.sdk.core.api.IASCallbackType
+import com.inappstory.sdk.core.api.UseIASCallback
 import com.inappstory.sdk.externalapi.ExternalPlatforms
+import com.inappstory.sdk.stories.callbacks.SessionIsOpenedCallback
 
 object InAppStorySDK {
     val inAppStoryManager = IASManager()
@@ -21,6 +25,14 @@ object InAppStorySDK {
         InAppStoryManager.useCore(object : UseIASCoreCallback() {
             override fun use(core: IASCore) {
                 core.settingsAPI().agentPrefix(ExternalPlatforms.COMPOSE_SDK.prefix)
+                core.callbacksAPI().setCallback(
+                    IASCallbackType.SESSION_IS_OPENED,
+                    object : SessionIsOpenedCallback {
+                        override fun isOpened() {
+                            StoryListItemViewModelsHolder.clear()
+                        }
+                    }
+                )
             }
         })
     }

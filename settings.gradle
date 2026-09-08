@@ -10,3 +10,4 @@ rootProject.name = "InAppStorySDKCompose"
 
 include ':ui-compose'
 //include ':examples'
+include ':myapplication'
