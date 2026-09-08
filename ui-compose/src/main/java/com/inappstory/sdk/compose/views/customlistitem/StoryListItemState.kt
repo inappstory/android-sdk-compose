@@ -3,7 +3,6 @@ package com.inappstory.sdk.compose.views.customlistitem
 import android.graphics.Color
 
 data class StoryListItemState(
-    val isRemovable: Boolean = false,
     val title: String = "",
     val backgroundColor: Int = Color.BLACK,
     val titleColor: Int = Color.BLACK,
