@@ -19,6 +19,8 @@ class IASSingle {
     fun showOnce(
         context: Context,
         storyId: String,
+        useTargeting: Boolean = false,
+        tags: List<String>? = null,
         appearanceManager: AppearanceManager = AppearanceManager(),
         show: () -> Unit = {},
         error: () -> Unit = {},
@@ -46,6 +48,8 @@ class IASSingle {
                     token,
                     context,
                     storyId,
+                    useTargeting,
+                    tags,
                     appearanceManager,
                     callback
                 )
@@ -57,6 +61,8 @@ class IASSingle {
     fun show(
         context: Context,
         storyId: String,
+        useTargeting: Boolean = false,
+        tags: List<String>? = null,
         appearanceManager: AppearanceManager = AppearanceManager(),
         show: () -> Unit = {},
         error: () -> Unit = {},
@@ -81,6 +87,8 @@ class IASSingle {
                         token,
                         context,
                         storyId,
+                        useTargeting,
+                        tags,
                         appearanceManager,
                         callback,
                         slide
