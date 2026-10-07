@@ -4,7 +4,7 @@ buildscript {
         ias_kotlin_version = "1.9.0"
         ias_gradle_version = "8.1.2"
         ias_gradle_plugin_version = "1.8.10"
-        ias_inappstory_version = "24011a788dd509f74a307ed4dc27bf462a00a83a"
+        ias_inappstory_version = "5423a36460a9e4504029a7c4bc49bbbcdc58c471"
         ias_fragment_ktx = "1.8.9"
         ias_appcompat = "1.5.0"
         ias_material = "1.6.1"
