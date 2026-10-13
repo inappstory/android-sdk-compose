@@ -23,6 +23,22 @@ class BannerVerticalGridController {
 
     }
 
+    internal var pauseBanners: (() -> Unit) = {
+
+    }
+
+    internal var resumeBanners: (() -> Unit) = {
+
+    }
+
+    fun pause() {
+        pauseBanners()
+    }
+
+    fun resume() {
+        resumeBanners()
+    }
+
     fun load() {
         loadGrid()
     }

@@ -36,11 +36,17 @@ fun BannerGrid(
                     bannerVerticalGridInterface
                 )
             )
+            bannerVerticalGridController.pauseBanners = {
+                this.pauseBanners()
+            }
+            bannerVerticalGridController.resumeBanners = {
+                this.resumeBanners()
+            }
             bannerVerticalGridController.loadGrid = {
                 this.loadBanners()
             }
             bannerVerticalGridController.reloadGrid = {
-                this.loadBanners(true)
+                this.reloadBanners()
             }
             loadCallback(object : BannerPlaceLoadCallback() {
                 override fun bannerPlaceLoaded(
