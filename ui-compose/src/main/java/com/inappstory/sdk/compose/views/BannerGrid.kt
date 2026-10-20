@@ -1,6 +1,8 @@
 package com.inappstory.sdk.compose.views
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -20,7 +22,8 @@ import com.inappstory.sdk.core.banners.ICustomBannerListAppearance
 @Composable
 fun BannerGrid(
     modifier: Modifier = Modifier
-        .fillMaxSize(),
+        .fillMaxWidth()
+        .wrapContentHeight(),
     bannerVerticalGridController: BannerVerticalGridController,
     placeId: String,
     uniqueId: String? = null,
