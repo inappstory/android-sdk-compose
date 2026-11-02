@@ -1,5 +1,22 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+apply plugin: 'com.vanniktech.maven.publish'
+
+def getVersionName = { ->
+    return inappstory_compose_output_version
+}
+
+def getArtifactId = { ->
+    return "android-sdk-compose"
+}
+
+def getGroupId = { ->
+    return "io.github.inappstory"
+}
+def getGhGroupId = { ->
+    return "com.github.inappstory"
+}
 
 android {
     compileSdk 35
@@ -100,3 +117,32 @@ project.afterEvaluate {
         mergeDebugJniLibFolders.dependsOn copyDebugDeps
     }
 }
+
+/*def githubProperties = new Properties()
+githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
+afterEvaluate {
+    publishing {
+        publications {
+            bar(MavenPublication) {
+                from components.release
+
+                groupId getGhGroupId()
+                artifactId getArtifactId()
+                version getVersionName()
+            }
+        }
+
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/inappstory/android-sdk-compose")
+
+                credentials {
+                    username = githubProperties['gpr.usr'] ?: ""
+                    password = githubProperties['gpr.key'] ?: ""
+                }
+            }
+        }
+    }
+}*/
